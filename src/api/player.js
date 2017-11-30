@@ -189,6 +189,9 @@ Player.prototype.onMessage_ = function(event) {
   }
   var type = message.type.toLowerCase();
   var data = message.data;
+  if (message.namespace === 'popcorn-embed') {
+    return;
+  }
   switch (type) {
     case 'ready':
       if (data !== undefined && data.duration !== undefined) {
