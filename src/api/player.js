@@ -302,7 +302,7 @@ Player.prototype.absolutifyPaths_ = function(contentInfo) {
   for (var i = 0; i < urlParams.length; i++) {
     var name = urlParams[i];
     var path = contentInfo[name];
-    if (path && Util.isPathAbsolute(path)) {
+    if (path && (Util.isPathAbsolute(path) || Util.isPathAbsolute(decodeURIComponent(path)))) {
       var absolute = Util.relativeToAbsolutePath(dirName, path);
       contentInfo[name] = absolute;
       //console.log('Converted to absolute: %s', absolute);
