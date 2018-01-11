@@ -223,6 +223,10 @@ WorldRenderer.prototype.didLoad_ = function(opt_event) {
 
 WorldRenderer.prototype.didLoadFail_ = function(message) {
   this.emit('error', message);
+  Util.sendParentMessage({
+    type: 'error',
+    data: {message: message}
+  });
   if (this.sceneReject) {
     this.sceneReject(message);
   }
