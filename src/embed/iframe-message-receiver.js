@@ -43,7 +43,7 @@ IFrameMessageReceiver.prototype.onMessage_ = function(event) {
   }
 
   var message = event.data;
-  var type = message.type.toLowerCase();
+  var type = message.type && message.type.toLowerCase();
   var data = message.data;
 
   switch (type) {

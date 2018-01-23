@@ -187,7 +187,7 @@ Player.prototype.onMessage_ = function(event) {
     console.warn('Received message with no type.');
     return;
   }
-  var type = message.type.toLowerCase();
+  var type = message.type && message.type.toLowerCase();
   var data = message.data;
   if (message.namespace === 'popcorn-embed') {
     return;
@@ -302,7 +302,7 @@ Player.prototype.absolutifyPaths_ = function(contentInfo) {
   for (var i = 0; i < urlParams.length; i++) {
     var name = urlParams[i];
     var path = contentInfo[name];
-    if (path && (Util.isPathAbsolute(path) || Util.isPathAbsolute(decodeURIComponent(path)))) {
+    if (path && !(Util.isPathAbsolute(path) || Util.isPathAbsolute(decodeURIComponent(path)))) {
       var absolute = Util.relativeToAbsolutePath(dirName, path);
       contentInfo[name] = absolute;
       //console.log('Converted to absolute: %s', absolute);
